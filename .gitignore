@@ -1,0 +1,16 @@
+# Python virtual environment
+venv/
+
+# Local environment variables
+.env
+
+# Bytecode
+__pycache__/
+*.pyc
+
+# Test cache
+.pytest_cache/
+
+# OS files
+.DS_Store
+Thumbs.db
