@@ -1,11 +1,13 @@
+import os
 import psycopg2
 
-def get_connection():
-    conn = psycopg2.connect(
-        dbname="huduma_connect",
-        user="postgres",
-        password="3698",
-        host="localhost",
-        port="5432"
-    )
-    return conn
+# Get the database URL from environment
+DATABASE_URL = os.getenv("DATABASE_URL")
+
+# Connect to PostgreSQL
+conn = psycopg2.connect(DATABASE_URL)
+cursor = conn.cursor()
+
+# Optional: test connection
+cursor.execute("SELECT 1;")
+print(cursor.fetchone())  # should print (1,)
