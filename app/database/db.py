@@ -1,13 +1,10 @@
 import os
 import psycopg2
 
-# Get the database URL from environment
 DATABASE_URL = os.getenv("DATABASE_URL")
+if not DATABASE_URL:
+    raise ValueError("DATABASE_URL is not set!")
 
-# Connect to PostgreSQL
-conn = psycopg2.connect(DATABASE_URL)
-cursor = conn.cursor()
-
-# Optional: test connection
-cursor.execute("SELECT 1;")
-print(cursor.fetchone())  # should print (1,)
+def get_connection():
+    """Return a new PostgreSQL connection"""
+    return psycopg2.connect(DATABASE_URL)
